@@ -1,10 +1,13 @@
 Assignment manager and Code Plagiarism Detection System
 
-It is a sad reality of college, a lot of students copy other students submissions or fail to cite references and violate the honor code. The objective of this project is to detect such cases of plagiarism among students and build a system which will have an interface for teachers to create new assignments and view submitted assignments, and for students to submit assignments.
+It is a sad reality of college, a lot of students copy other students submissions or fail to cite references and violate the honor code.
+ The objective of this project is to detect such cases of plagiarism among students and build a system which will have an interface for 
+teachers to create new assignments and view submitted assignments, and for students to submit assignments.
 
 Existing System:
     
-    Teacher gives assignments to students manually i.e(Handwritten Handbook), Student completes these assignments and shows it to relative teacher from the machine that they are working. The teacher will evaluate the assignments and gives the remark on some maintained paper.
+    Teacher gives assignments to students manually i.e(Handwritten Handbook), Student completes these assignments and shows it to relative
+ teacher from the machine that they are working. The teacher will evaluate the assignments and gives the remark on some maintained paper.
 
 
 Drawbacks Of Existing System:
