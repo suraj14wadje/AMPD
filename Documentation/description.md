@@ -1,6 +1,6 @@
 # Assignment manager and Code Plagiarism Detection System
 
-It is a sad reality of college, a lot of students copy other students submissions or fail to cite references and violate the honor code. The objective of this project is to detect such cases of plagiarism among students and build a system which will have an interface for teachers to create new assignments and view submitted assignments, and for students to submit assignments.
+ It is a sad reality of college, a lot of students copy other students submissions or fail to cite references and violate the honor code. The objective of this project is to detect such cases of plagiarism among students and build a system which will have an interface for teachers to create new assignments and view submitted assignments, and for students to submit assignments.
 
 ### Existing System:
     
@@ -21,11 +21,11 @@ It is a sad reality of college, a lot of students copy other students submission
         Store the Submitted assignment in the server.
         If the assignment is c/c++ source code it will scan other relative submitted assignments to detect plagiarism.
 
-### Feasibility study:
+## Feasibility study:
 
-##     Technical feasibility:
+###     Technical feasibility:
         Server will require any linux environment to run while client will have to have any web browser to use the system.
     
-##    Economic feasibility:
+###    Economic feasibility:
         The tools that are being used in this project are open source hence there will be no economical cost to implement these system.
      
