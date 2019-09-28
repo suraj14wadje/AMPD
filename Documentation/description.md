@@ -4,28 +4,37 @@
 
 ### Existing System:
     
-    Teacher gives assignments to students manually i.e(Handwritten Handbook), Student completes these assignments and shows it to relative teacher from the machine that they are working. The teacher will evaluate the assignments and gives the remark on some maintained paper.                                             
+<p>    Teacher gives assignments to students manually i.e(Handwritten Handbook), Student completes these assignments
+    and shows it to relative teacher from the machine that they are working. The teacher will evaluate the
+    assignments and gives the remark on some maintained paper.
+<p>
 
 
 ### Drawbacks Of Existing System:
-    Becomes Hard to Maintain paper records of students remarks.
-    It becomes nearly impossible for a teacher to recall other students code to check if the code is plagiarised.
+*    Becomes Hard to Maintain paper records of students remarks.
+*    It becomes nearly impossible for a teacher to recall other students code to check if the code is plagiarised.
 
 ### Scope of the proposed system:
-    A teacher can create new assignments, view submitted assignments, view plagiarised assignments, evaluate the submitted assignments.
+*    A teacher can create new assignments, view submitted assignments, view plagiarised assignments, evaluate the
+    submitted assignments.
    
-    A student can view available assignments, view remarks for evaluated assignments, view due assignments, Submit a particular assignment.
+*    A student can view available assignments, view remarks for evaluated assignments, view due assignments, Submit
+     a particular assignment.
    
-    The system will
+*    The system will
    
-        Store the Submitted assignment in the server.
-        If the assignment is c/c++ source code it will scan other relative submitted assignments to detect plagiarism.
+     * Store the Submitted assignment in the server.
+
+     *    If the assignment is c/c++ source code it will scan other relative submitted assignments to detect plagiarism.
+
+---
 
 ## Feasibility study:
 
 ###     Technical feasibility:
-        Server will require any linux environment to run while client will have to have any web browser to use the system.
+
+<p> Server will require any linux environment to run while client will have to have any web browser to use the system.
     
 ###    Economic feasibility:
-        The tools that are being used in this project are open source hence there will be no economical cost to implement these system.
+<p>        The tools that are being used in this project are open source hence there will be no economical cost to implement these system.
      
