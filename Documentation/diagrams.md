@@ -5,4 +5,4 @@
 
 ## ERD Diagram
 
-![ERD](https://www.lucidchart.com/publicSegments/view/5d36637f-0ead-4366-b16a-066d0800b238/image.jpeg)
+![ERD](https://www.lucidchart.com/publicSegments/view/e16be721-7d87-438e-bd5b-85ed0772e5cf/image.jpeg)
