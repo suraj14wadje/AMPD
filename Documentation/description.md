@@ -36,5 +36,5 @@
 <p> Server will require any linux environment to run while client will have to have any web browser to use the system.
     
 ###    Economic feasibility:
-<p>        The tools that are being used in this project are open source hence there will be no economical cost to implement these system.
+<p>        The tools that are being used in this project are open source hence there will be no economical cost to implement this system.
      
