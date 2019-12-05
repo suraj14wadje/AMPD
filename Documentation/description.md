@@ -92,4 +92,5 @@ Minimum requirements for server are:
 
 ![ERD](https://www.lucidchart.com/publicSegments/view/e16be721-7d87-438e-bd5b-85ed0772e5cf/image.j00peg)
 
-     
+
+![ERD](https://www.lucidchart.com/publicSegments/view/10f34619-dcb6-44fc-a481-4fcbd625b9b2/image.jpeg)
