@@ -34,9 +34,9 @@ assignments and gives the remark on some maintained paper.
 *    Becomes Hard to Maintain paper records of students remarks.
 *    It becomes nearly impossible for a teacher to recall other students code to check if the code is plagiarised.
 
-### Praposed System
+### Proposed System
 
-<p>In praposed system teacher will create new assignments each assignment belongs to some class(fy,sy,ty,msc-1,msc-2). these assignments will be visible on students homepage from there student can complete their assignments from local machine and once the assinment is done student can submit it.
+<p>In proposed system teacher will create new assignments each assignment belongs to some class(fy,sy,ty,msc-1,msc-2). these assignments will be visible on students homepage from there student can complete their assignments from local machine and once the assinment is done student can submit it.
 when student clicks on submit button assignment is stored in database in the form of text this stored assignmet is now undergoes a plagiarism detection algorithm and assigns score for plagiarism. All the submission from students are visible to relative teachers.
 this code is reviewed by teacher and remarks and marks are given.
 
