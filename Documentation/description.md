@@ -34,6 +34,18 @@
 ###     Technical feasibility:
 
 <p> Server will require any linux environment to run while client will have to have any web browser to use the system.
+
+Minimum requirements for server are:
+* 2 GB of ram
+* Linux operating system
+* PostGreSQL
+* JAVA
+
+
+### Operational feasibility:
+
+<p> The System Is operationally feasible because it will be a GUI based system and will be simple and easy to use. 
+
     
 ###    Economic feasibility:
 <p>        The tools that are being used in this project are open source hence there will be no economical cost to implement this system.
