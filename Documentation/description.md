@@ -1,7 +1,7 @@
+# Assignment manager and Code Plagiarism Detection System 
+---
 
-<p align="center">
-<h1> Assignment manager and Code Plagiarism Detection System </h1>
-</p>
+
 
 | Sr. no   |     Title      |  page no |
 |:----------|:-------------:|:------:|
@@ -15,12 +15,18 @@
 | 8 | Economical Feasibility | |
 | 9 | Use Case | |
 | 10 | ER Diagram | |
+
+
+
+---
+
+
 ### Introduction
- It is a sad reality of college, a lot of students copy other students submissions or fail to cite references and violate the honor code. The objective of this project is to detect such cases of plagiarism among students and build a system which will have an interface for teachers to create new assignments and view submitted assignments, and for students to submit assignments.
+ A lot of students copy other students submissions or fail to cite references and violate the honor code. The objective of this project is to detect such cases of plagiarism among students and build a system which will have an interface for teachers to create new assignments and view submitted assignments, and for students to submit assignments.
 
 ### Existing System:
     
-<p>    In Existing system Teacher gives assignments to students manually i.e(Handwritten Handbook) these assignmets are then completed by the student.
+In Existing system Teacher gives assignments to students manually i.e(Handwritten Handbook) these assignmets are then completed by the student.
 most of these assignments are in the form of c++/java/c programming language.
 
 after completing this assignmet and shows it to relative teacher from the machine that they are working. The teacher will evaluate the
@@ -36,7 +42,8 @@ assignments and gives the remark on some maintained paper.
 
 ### Proposed System
 
-<p>In proposed system teacher will create new assignments each assignment belongs to some class(fy,sy,ty,msc-1,msc-2). these assignments will be visible on students homepage from there student can complete their assignments from local machine and once the assinment is done student can submit it.
+In proposed system teacher will create new assignments each assignment belongs to some class (fy,sy,ty,msc-1,msc-2).
+these assignments will be visible on students homepage from there student can complete their assignments from local machine and once the assinment is done student can submit it.
 when student clicks on submit button assignment is stored in database in the form of text this stored assignmet is now undergoes a plagiarism detection algorithm and assigns score for plagiarism. All the submission from students are visible to relative teachers.
 this code is reviewed by teacher and remarks and marks are given.
 
@@ -59,7 +66,7 @@ this code is reviewed by teacher and remarks and marks are given.
 
 ###     Technical feasibility:
 
-<p> Server will require any linux environment to run while client will have to have any web browser to use the system.
+ Server will require any linux environment to run while client will have to have any web browser to use the system.
 
 Minimum requirements for server are:
 * 2 GB of ram
@@ -70,12 +77,13 @@ Minimum requirements for server are:
 
 ### Operational feasibility:
 
-<p> The System Is operationally feasible because it will be a GUI based system and will be simple and easy to use. In the existing system, all work is done manually which is a time-consuming and tedious job and also difficult to maintain paper records. Hence the proposed system provides a systematic method and improves the performance of the system in managing the submissions of student’s assignments.
+ The System Is operationally feasible because it will be a GUI based system and will be simple and easy to use. In the existing system, all work is done manually which is a time-consuming and tedious job and also difficult to maintain paper records. Hence the proposed system provides a systematic method and improves the performance of the system in managing the submissions of student’s assignments.
  
 
     
 ###    Economic feasibility:
-<p>        The tools that are being used in this project are open source hence there will be no economical cost to implement this system.
+
+The tools that are being used in this project are open source hence there will be no economical cost to implement this system.
 
 
 
@@ -89,8 +97,8 @@ Minimum requirements for server are:
 ## Use Case Scenario
 
 * ### Usecase Description: 
-    <p> This usecase describes the working of the system. It describes
-    how the student logins and submits a assignment and how a teacher registers and reviews submitted Assignment </p>
+     This usecase describes the working of the system. It describes
+    how the student logins and submits a assignment and how a teacher registers and reviews submitted Assignment
 
 
 * ### Actors:
@@ -102,15 +110,15 @@ Minimum requirements for server are:
     Updated all tables.
 
 * ### Basic flow of system:
-    <ol type="a">
-    <li> teacher creates its account
-    <li> HOD assigns Teacher their respective batches
-    <li> Teacher will create assignments
-    <li> Created Assignment will be visible to students
-    <li> student completes its assignment and submits
-    <li> submitted assignment will be visible to respective batch incharges
-    <li>submitted assignment undergoes plagiarism detection algorithm
-    <li> Teacher reviews assignment and gives remark
+    
+    * teacher creates its account
+    * HOD assigns Teacher their respective batches
+    * Teacher will create assignments
+    * Created Assignment will be visible to students
+    * student completes its assignment and submits
+    * submitted assignment will be visible to respective batch incharges
+    * submitted assignment undergoes plagiarism detection algorithm
+    * Teacher reviews assignment and gives remark
     </ol>
 
 * ### Alternative Flow:
