@@ -81,11 +81,42 @@ Minimum requirements for server are:
 
 ---
 
-<h2 align="center"> Diagrams </h2>
 
 ## Use Case Diagram
 
 ![Use Case](https://www.lucidchart.com/publicSegments/view/39ff1a53-79f1-4daa-9c54-19e739cb6500/image.jpeg)
+
+## Use Case Scenario
+
+* ### Usecase Description: 
+    <p> This usecase describes the working of the system. It describes
+    how the student logins and submits a assignment and how a teacher registers and reviews submitted Assignment </p>
+
+
+* ### Actors:
+    Teacher,Student,HOD,Database.
+* ### Preconditions:
+    student have registered
+
+* ### Postconditions: 
+    Updated all tables.
+
+* ### Basic flow of system:
+    <ol type="a">
+    <li> teacher creates its account
+    <li> HOD assigns Teacher their respective batches
+    <li> Teacher will create assignments
+    <li> Created Assignment will be visible to students
+    <li> student completes its assignment and submits
+    <li> submitted assignment will be visible to respective batch incharges
+    <li>submitted assignment undergoes plagiarism detection algorithm
+    <li> Teacher reviews assignment and gives remark
+    </ol>
+
+* ### Alternative Flow:
+    If user enters wrong credentials there will be error
+
+
 
 
 ## ER Diagram
