@@ -16,7 +16,7 @@ public class config {
 		{
 			System.out.println("some tables not found\n Creating Tables......");
 			createTableFromFile();
-			System.out.println("setup is Done");
+			System.out.println("table creation is Done..");
 			getTableCount();
 		}
 		try {
@@ -63,7 +63,7 @@ public class config {
 			DatabaseMetaData dbmd = conn.getMetaData();
 			String type[] = {"TABLE"};
 			ResultSet rs = dbmd.getTables(null, null,null,type);
-			
+			System.out.println("following are the tables present in database : ");
 			while(rs.next())
 			{
 				count++;
