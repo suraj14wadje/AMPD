@@ -57,8 +57,8 @@ create table program
     p_id serial primary key,
     a_no int references Assignment on delete cascade on update cascade,
     t_id int references Teacher on delete set null on update cascade,
-    que_file_path varchar(100),
-    out_file_path varchar(100),
+    question text,
+    expected_ouput text,
     last_date_of_submission date,
     date_of_creation date
 );
@@ -70,8 +70,8 @@ create table submission
     roll_no int references student on delete cascade on update cascade,
     p_id int references program on delete cascade on update cascade,
     sub_date date,
-    sub_file_path varchar(100),
-    processed_file_path varchar(100),
+    program text,
+    processed_program text,
     plagiarism_score float,
     comment text,
     marks int CHECK (marks in (1,2,3,4,5))

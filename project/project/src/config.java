@@ -77,6 +77,11 @@ public class config {
 		return count;
 	}
 	
+	public static void main(String args[])
+	{
+		new config();
+	}
+	
 	
 
 }
