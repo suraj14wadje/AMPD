@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome To HomePage</title>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="font/css/all.css" type="text/css" rel ="stylesheet">
+    <link rel="stylesheet" href="css/mycss.css" type="text/css">
+
+
+
+</head>
+
+<body class="home-page">
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  
+  
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><i class="fas fa-terminal"></i> Code</a>
+    
+  </nav>
+  
+
+  <div class="container">
+    
+    
+    <h1 class="text-center"><i class="fas fa-sign-in-alt"></i> Login </h1>
+    <br>
+    
+    <div class="row">
+      <div class="col-sm">
+        <div class="shadow-sm p-3 mb-5 bg-white rounded">
+          <div class="card">
+            <div class="card-body special-card">
+              <h4 class="card-title"><i class="fas fa-user-tie"></i>  For Teachers</h4>
+                <p class="card-text">A place where you can create assignments for your student and view assignments that are submitted by your students</p>
+                <a href="#Login" data-toggle="modal" class="btn btn-success">Login</a>
+                <br><br>
+                <p class="text-center">
+                  Don't have an account?  <a href="#SignUp" data-toggle="modal" > Request for an account</a>
+                </p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="shadow-sm p-3 mb-5 bg-white rounded">
+            <div class="card special-card">
+              <div class="card-body">
+                <h4 class="card-title"><i class="fas fa-user-graduate"></i> For Students</h4>
+                  <p class="card-text">A place where you can view you assignments and submit them</p>
+                  <a href="html/ViewAssignments.html" class="btn btn-success">Login</a>
+                  <br><br>
+                  <p class="text-center">
+                    Don't have an account?  <a href="#" > Sign Up</a>
+                  </p>
+                </div>
+                
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+        
+        
+      </div >
+      <div class="area" >
+        <ul class="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div > 
+      
+      
+      
+       <script>
+        $(document).ready(function() {
+            $("#mail").change(function() {
+                $.get("createNewTeacher", $(this).serialize(), function(data) {
+                    if (data.valid) {
+                        $("#mail").addClass("is-valid");
+                    }
+                    else
+                    {
+                    	$("#mail").addClass("is-invalid");
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+  Launch static backdrop modal
+</button>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade modal=lg" id="SignUp" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-center" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="staticBackdropLabel">Sign Up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body container-fluid">
+        <form action="createNewTeacher" method="post">
+              <div class="form-group">
+                <input type="text" name="fname" class="form-control" placeholder="First Name" required="required">
+              </div>
+              <div class="form-group">
+                <input type="text" name="lname" class="form-control" placeholder="Last Name" required="required">
+              </div>
+
+              <div class="form-group">
+                <input id="mail" type="email" id ="email" name="email" class="form-control" placeholder="yourEmail@example.com" required="required">
+              </div>
+              <div class="form-group">
+                <input type="password" name="pass" class="form-control" placeholder="Password" required="required">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirm Password" required="required">
+              </div>
+              <div class="row">
+              <div class="col-6 col-offset-1 modal-footer form-group">
+                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign in">
+              </div>
+              
+              </div>
+              
+              <button type="button btn-sm" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Modal HTML -->
+    <div id="Sign12Up" class="modal fade">
+      <div class="modal-dialog modal-login">
+        <div class="modal-content">
+          <div class="modal-header">				
+            <h4 class="modal-title">Sign Up</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body">
+            				
+            <p class="hint-text small"><a href="#">Forgot Your Password?</a></p>
+          </div>
+        </div>
+      </div>
+    </div> 
+    
+    
+    <div id="Lo2gin" class="modal fade">
+      <div class="modal-dialog modal-login">
+        <div class="modal-content">
+          <div class="modal-header">				
+            <h4 class="modal-title">Log in</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body">
+            <form action="createNewTeacher" method="post">
+              <div class="form-group">
+                <input type="text" class="form-control" name="uname" placeholder="Username" required="required">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name = "pass" placeholder="Password" required="required">
+              </div>
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign in">
+              </div>
+            </form>				
+            <p class="hint-text small"><a href="#">Forgot Your Password?</a></p>
+          </div>
+        </div>
+      </div>
+    </div>     
+    </body>
+    </html>
