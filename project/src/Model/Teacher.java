@@ -17,8 +17,8 @@ public class Teacher extends user_data {
 	public boolean createNew() {
 		// TODO Auto-generated method stub
 		
-		boolean result;
-		int count;
+		boolean result=false;
+		int count=0;
 		connect connection = new connect();
 		result = super.createNew();
 		if(result)
@@ -47,6 +47,49 @@ public class Teacher extends user_data {
 		}
 		
 		return result;
+	}
+
+	public static String getFirstName(String email)
+	{
+		String result="";
+		connect connection = new connect();
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select first_name from teacher where email = ? ;");
+			ps.setString(1,email);
+			ResultSet rs = ps.executeQuery();
+			if(!rs.next())
+			{
+				System.out.println("erro");
+			}
+			result = rs.getString("first_name");
+			System.out.println(result);
+		} catch (SQLException e) {
+
+		}
+		return result;
+	}
+
+	public static boolean authenticate(String email,String password) {
+		connect connection = new connect();
+		boolean ans = false;
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select email from Teacher where email = ?");
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				ans= user_data.authenticate(email, password);
+			}
+			rs.close();
+			ps.close();
+			connection.close();
+
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return ans;
 	}
 	
 	public static boolean update(String email,String firstName,String lastName)

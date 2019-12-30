@@ -4,9 +4,46 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+	<script src="js/lib/jquery-3.1.1.js"></script>
+	<script src="js/dist/jquery.validate.js"></script>
 </head>
 <body>
+<script>
+	$().ready(function (){
+
+		jQuery.validator.setDefaults({
+			debug: true,
+			success: "valid"
+		});
+		$("#valid").validate({
+			rules : {
+				emailinput:{
+					email:true,
+					required:true,
+					remote: {
+					type: "POST",
+					url: 'UserValidation'//servlet
+					}
+				}
+
+				},
+
+			success : function (lable) {
+				lable.addClass("valid").text("looks good!");
+				
+			}
+	})
+
+	})
+
+</script>
 
 	<h1>Welcome</h1>
+
+	<form id="valid" method="post">
+		<input type="email" name="emailinput">
+		<br><br>
+		<input type="submit">
+	</form>
 </body>
 </html>

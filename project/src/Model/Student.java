@@ -13,7 +13,7 @@ public class Student extends user_data {
 	int rollno,cid,bid,year;
 	String firstName;
 	String lastName;
-	public Student(String email, String password, String firstName, String lastName) {
+	public Student(String email, String password, String firstName, String lastName,int rollno) {
 		super(email, password);
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -22,6 +22,9 @@ public class Student extends user_data {
 		cal.setTime(today);
 		
 		this.year = cal.get(Calendar.YEAR);
+		this.rollno = rollno;
+
+
 	}
 	public void setRollno(int rollno) {
 		this.rollno = rollno;
@@ -45,17 +48,19 @@ public class Student extends user_data {
 	public boolean createNew() {
 		// TODO Auto-generated method stub
 		
-		boolean result;
+		boolean result = false;
 		int count;
 		connect connection = new connect();
 		result = super.createNew();
 		if(result)
 		{
 			try {
-				PreparedStatement ps = connection.conn.prepareStatement("insert into Student values(default,?,?,?);");
+				PreparedStatement ps = connection.conn.prepareStatement("insert into Student(first_name,last_name,email,year,roll_no) values(?,?,?,?,?);");
 				ps.setString(1,firstName);
-				ps.setString(3,lastName);
-				ps.setString(4,super.getEmail());
+				ps.setString(2,lastName);
+				ps.setString(3,super.getEmail());
+				ps.setInt(4,year);
+				ps.setInt(5,rollno);
 				count = ps.executeUpdate();
 				ps.close();
 				connection.close();
@@ -68,10 +73,6 @@ public class Student extends user_data {
 			}
 			
 			
-		}
-		else
-		{
-			result =  false;
 		}
 		
 		return result;
@@ -135,6 +136,49 @@ public class Student extends user_data {
 		
 		
 		return result;
+	}
+
+	public static String getFirstName(String email)
+	{
+		String result="";
+		connect connection = new connect();
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select first_name from student where email = ? ;");
+			ps.setString(1,email);
+			ResultSet rs = ps.executeQuery();
+			if(!rs.next())
+			{
+				System.out.println("erro");
+			}
+			result = rs.getString("first_name");
+			System.out.println(result);
+		} catch (SQLException e) {
+
+		}
+		return result;
+	}
+
+	public static boolean authenticate(String email,String password) {
+		connect connection = new connect();
+		boolean ans = false;
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select email from Student where email = ?");
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				ans= user_data.authenticate(email, password);
+			}
+			rs.close();
+			ps.close();
+			connection.close();
+
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return ans;
 	}
 	
 }

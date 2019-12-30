@@ -47,7 +47,7 @@ create table student
     b_id int references batch on delete set null on update cascade,
     first_name varchar(30) not null,
     last_name varchar(30) not null,
-    email varchar(50) references user_data on delete no action on update cascade,
+    email varchar(50) references user_data on delete set null on update cascade,
     year int
 );
 

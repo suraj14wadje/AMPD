@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class validate
  */
-public class validate extends HttpServlet {
+public class validate extends Hello {
 	private static final long serialVersionUID = 1L;
        
     /**

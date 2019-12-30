@@ -3,6 +3,7 @@ import java.security.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class user_data {
 	private String email;
@@ -17,6 +18,35 @@ public class user_data {
 		this.email = email;
 		this.password = password;
 		
+	}
+
+	public static boolean isEmailAvailable(String email)
+	{
+		boolean result=false;
+
+		connect connection = new connect();
+		try
+		{
+			PreparedStatement ps = connection.conn.prepareStatement("select email from user_data where email = ?;");
+			ps.setString(1,email);
+
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+			{
+				if(email.equals(rs.getString("email")))
+				{
+					return true;
+				}
+			}
+
+		}catch(Exception ex)
+		{
+			System.out.println(ex);
+			return false;
+		}
+
+
+		return  result;
 	}
 	
 	public static boolean update(String oldEmail,String email,String password)
@@ -52,7 +82,7 @@ public class user_data {
 	public boolean createNew()
 	{
 		boolean ans=false;
-		int result;
+		int result=0;
 		connect connection = new connect();
 		
 		
@@ -76,6 +106,7 @@ public class user_data {
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 		
 		

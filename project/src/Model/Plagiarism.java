@@ -1,12 +1,14 @@
 package Model;
 import gst.GreedyStringTiling;
 import gst.PlagResult;
+import org.json.simple.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Statement;
+import java.util.Vector;
 
 public class Plagiarism {
 	String code;
@@ -68,14 +70,22 @@ public class Plagiarism {
 	
 	public static void main(String args[])
 	{
-		Plagiarism p = new Plagiarism();
-		String first = p.createStringFromFile("WebContent/WEB-INF/p1.c");
-		String second = p.createStringFromFile("WebContent/WEB-INF/p2.c");
-		first=Plagiarism.clean(first);
-		second=Plagiarism.clean(second);
-		
-		PlagResult rs = GreedyStringTiling.run(second,first,2,(float)0.85);
-		System.out.println(rs.__str__());
+//		Plagiarism p = new Plagiarism();
+//		String first = p.createStringFromFile("WebContent/WEB-INF/p1.c");
+//		String second = p.createStringFromFile("WebContent/WEB-INF/p2.c");
+//		first=Plagiarism.clean(first);
+//		second=Plagiarism.clean(second);
+//
+//		PlagResult rs = GreedyStringTiling.run(second,first,2,(float)0.85);
+//		System.out.println(rs.__str__());
+		JSONObject obj=new JSONObject();
+		obj.put("eStatus",true);
+		obj.put("signStatus",false);
+
+
+
+System.out.println(obj.toJSONString());
+		System.out.println(user_data.isEmailAvailable("suraj14wasfddje@gmail.com"));
 		
 	}
 
