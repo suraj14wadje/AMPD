@@ -1,6 +1,6 @@
 package controller;
 
-import Model.user_data;
+import Model.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,26 +9,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class UserValidation extends HttpServlet {
+@WebServlet(name = "RollNoValidation")
+public class RollNoValidation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String uname = request.getParameter("email");
-
-        boolean status = user_data.isEmailAvailable(uname);
-        System.out.println(status);
+        int rollno = Integer.parseInt(request.getParameter("rollno"));
+        boolean result = Student.rollNoAvailable(rollno);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        if(status)
+        if(result)
         {
-
-            response.getWriter().println("\"This Email Is Already Taken!\"");
+            response.getWriter().write("\"This Roll Number Is already registered\"");
         }
         else
-            response.getWriter().println("true");
+        {
+            response.getWriter().write("true");
+        }
 
 
     }

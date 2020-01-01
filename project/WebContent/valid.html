@@ -10,56 +10,22 @@
     <script src="js/lib/jquery-3.4.1.min.js"></script>
     <script src="js/dist/jquery.validate.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script>
-        // $.validator.setDefaults({
-        // 	submitHandler: function() {
-        // 		alert("submitted!");
-        // 	}
-        // });
 
-
-        $().ready(function() {
-            // validate the comment form when it is submitted
-            // validate signup form on keyup and submit
-            $("#Signup").validate(
-                {
-                rules  : {
-
-                    password: "required",
-                    confirm_password: {
-                        required: true,
-                        minlength: 5,
-                        equalTo: "#password"
-                    }
-                }
-            });
-
-        })
-    </script>
 </head>
 <body>
 
 
 
-    <form id="Signup" >
+<div class="col-lg-3 col-md-6 my-auto">
+
+    <div class="card shadow p-3 mb-5 bg-white border-primary rounded">
+        <div class="card-body"><h5 class="card-title text-center">Some Random </h5>
 
 
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password">
-            <p>
-                <label for="confirm_password">Confirm password</label>
-                <input id="confirm_password" name="confirm_password" type="password">
-            </p>
-            <p>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email">
-            </p>
 
-            <p>
-                <input type="submit">
-            </p>
-
-    </form>
+        </div>
+    </div>
+</div>
 
 </div>
 </body>

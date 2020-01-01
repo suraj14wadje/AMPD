@@ -1,7 +1,9 @@
 package Model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class Class_1 {
 	
@@ -37,7 +39,60 @@ public class Class_1 {
 		
 		return result;
 	}
-	
+
+
+	public static Vector getClassAndBatchNamesFromT_id(int t_id)
+	{
+		Vector result = new Vector();
+		connect connect = new connect();
+		try{
+			PreparedStatement statement = connect.conn.prepareStatement("select batch_name,class_name from class,batch where class.c_id = batch.c_id and t_id=?;");
+			statement.setInt(1,t_id);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next())
+			{
+				String class_name = rs.getString("class_name");
+				String batch_name = rs.getString("batch_name");
+				Vector temp = new Vector();
+				temp.add(class_name);
+				temp.add(batch_name);
+
+				result.add(temp);
+			}
+			connect.close();
+		}catch (Exception ex)
+		{
+			System.out.println(ex);
+		}
+		return result;
+	}
+
+
+	public static Vector getClassNamesFromT_id(int t_id)
+	{
+		Vector result = new Vector();
+		connect connect = new connect();
+		try{
+			PreparedStatement statement = connect.conn.prepareStatement("select class_name,c_id from class where c_id in (select c_id from batch where t_id = ? );");
+			statement.setInt(1,t_id);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next())
+			{
+				String class_name = rs.getString("class_name");
+				int c_id = rs.getInt("c_id");
+				Vector temp = new Vector();
+				temp.add(class_name);
+				temp.add(c_id);
+
+				result.add(temp);
+			}
+			connect.close();
+		}catch (Exception ex)
+		{
+			System.out.println(ex);
+		}
+		return result;
+	}
 	public static boolean update(int id,String name)
 	{
 		boolean result = false;

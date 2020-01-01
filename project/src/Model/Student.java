@@ -35,6 +35,32 @@ public class Student extends user_data {
 	public void setBid(int bid) {
 		this.bid = bid;
 	}
+
+	public static boolean rollNoAvailable(int rollno)
+	{
+		boolean result = false;
+		connect connect = new connect();
+
+		try {
+			PreparedStatement statement = connect.conn.prepareStatement("select roll_no from student where roll_no = ? ;");
+			ResultSet rs;
+			statement.setInt(1,rollno);
+			rs = statement.executeQuery();
+			if(rs.next())
+			{
+
+				int temp = rs.getInt("roll_no");
+				result = temp==rollno;
+
+			}
+			connect.close();
+
+		} catch (SQLException e) {
+		}
+
+		return result;
+
+	}
 	public void setYear()
 	{
 		Date today = new Date();
@@ -146,12 +172,8 @@ public class Student extends user_data {
 			PreparedStatement ps = connection.conn.prepareStatement("select first_name from student where email = ? ;");
 			ps.setString(1,email);
 			ResultSet rs = ps.executeQuery();
-			if(!rs.next())
-			{
-				System.out.println("erro");
-			}
 			result = rs.getString("first_name");
-			System.out.println(result);
+			connection.close();
 		} catch (SQLException e) {
 
 		}

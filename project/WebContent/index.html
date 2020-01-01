@@ -28,6 +28,7 @@
           },
           unhighlight: function(element){
             $(element).removeClass('is-invalid');
+            $(element).addClass('is-valid');
           }
         })
 
@@ -56,13 +57,20 @@
                       maxlength: 30
                     },
                     pass: {
+                      required:true,
                       minlength: 8,
                       maxlength: 30
                     },
                     email: {
                       maxlength: 40,
-                      email: true
+                      email: true,
+                      remote : "UserValidation"
+                    },
+                    rollno:{
+                      remote : "Rollno"
                     }
+
+
                   }
                 });
 
@@ -170,7 +178,7 @@
             error : function(data)
             {
               $('.alert').addClass('alert-danger');
-              $('.alert').html("Some Internal Error Occured!");
+              $('.alert').html("Couldn't Communicate With Server !");
               console.log(data); // show response from the php script.
             }
           });

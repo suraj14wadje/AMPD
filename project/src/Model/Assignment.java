@@ -1,7 +1,9 @@
 package Model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class Assignment {
 	private String a_name;
@@ -36,6 +38,73 @@ public class Assignment {
 		}
 		
 		
+		return result;
+	}
+
+
+
+	public static String getAssNameFromA_no(int a_no)
+	{
+		String result="";
+
+		connect connection = new connect();
+
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select a_name from assignment where a_no = ?;");
+			ps.setInt(1,a_no);
+
+			ResultSet rs = ps.executeQuery();
+			if(!rs.next())
+			{
+				connection.close();
+				return null;
+			}else {
+				result = rs.getString("a_name");
+			}
+			connection.close();
+
+		}catch(Exception ex)
+		{
+			System.out.println(ex);
+		}
+
+
+		return result;
+	}
+
+
+
+	public static Vector getAssNameAndNoFromSubId(int sub_id)
+	{
+		Vector result=new Vector();
+
+		connect connection = new connect();
+
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select a_no,a_name from assignment where sub_id = ? order by a_no desc");
+			ps.setInt(1,sub_id);
+			ResultSet rs = ps.executeQuery();
+			if(!rs.next())
+			{
+				connection.close();
+				return null;
+			}else {
+				do{
+					Vector temp = new Vector();
+					temp.add(rs.getInt("a_no"));
+					temp.add(rs.getString("a_name"));
+					result.add(temp);
+
+				}while (rs.next());
+			}
+			connection.close();
+
+		}catch(Exception ex)
+		{
+			System.out.println(ex);
+		}
+
+
 		return result;
 	}
 	

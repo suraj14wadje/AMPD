@@ -1,7 +1,9 @@
 package Model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class Subject {
 	int c_id;
@@ -37,6 +39,59 @@ public class Subject {
 		}
 		
 		
+		return result;
+	}
+
+
+	public static String getSubjectNameFromSubId(int sub_id)
+	{
+		String result = "";
+		connect connect = new connect();
+		try
+		{
+			PreparedStatement ps= connect.conn.prepareStatement("select sub_name from subject where sub_id = ?");
+			ps.setInt(1,sub_id);
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next())
+			{
+				result = rs.getString("sub_name");
+
+			}
+			connect.close();
+		}catch (Exception ex)
+		{
+			connect.close();
+			System.out.println(ex);
+		}
+
+		return result;
+	}
+
+
+	public static Vector getSubjectNamesFromC_id(int c_id)
+	{
+		Vector result = new Vector();
+		connect connect = new connect();
+		try
+		{
+			PreparedStatement ps= connect.conn.prepareStatement("select sub_name,sub_id from subject where c_id = ?");
+			ps.setInt(1,c_id);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next())
+			{
+				Vector temp = new Vector();
+				temp.add(rs.getString("sub_name"));
+				temp.add(rs.getInt("sub_id"));
+				result.add(temp);
+			}
+
+		}catch (Exception ex)
+		{
+			System.out.println(ex);
+		}
+
 		return result;
 	}
 	

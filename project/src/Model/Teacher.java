@@ -49,6 +49,24 @@ public class Teacher extends user_data {
 		return result;
 	}
 
+
+	public static int getT_idfromEmail(String email)
+	{
+		int result = 0;
+		connect connection = new connect();
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select t_id from teacher where email = ? ;");
+			ps.setString(1,email);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			result = rs.getInt("t_id");
+			connection.close();
+		} catch (SQLException e) {
+			connection.close();
+		}
+		return result;
+	}
+
 	public static String getFirstName(String email)
 	{
 		String result="";
@@ -62,9 +80,29 @@ public class Teacher extends user_data {
 				System.out.println("erro");
 			}
 			result = rs.getString("first_name");
-			System.out.println(result);
+			connection.close();
 		} catch (SQLException e) {
+			connection.close();
+		}
+		return result;
+	}
 
+	public static int getT_id(String email)
+	{
+		int result=0;
+		System.out.println(email);
+		connect connection = new connect();
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select t_id from teacher where email = ? ;");
+			ps.setString(1,email);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			result = rs.getInt("t_id");
+			connection.close();
+
+		} catch (SQLException e) {
+			connection.close();
+			System.out.println(e);
 		}
 		return result;
 	}

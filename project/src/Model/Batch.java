@@ -42,6 +42,9 @@ public class Batch {
 		
 		return result;
 	}
+
+
+
 	
 	public static boolean update(int id,String batch_name,int c_id,int b_id)
 	{

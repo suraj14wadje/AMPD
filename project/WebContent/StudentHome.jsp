@@ -27,17 +27,19 @@
     <a class="navbar-brand" href="index.html"><i class="fas fa-terminal"></i> Code</a>
 
     <div class="nav navbar-nav navbar-center">
-    <span class="navbar-text"> <h5>Welcome
+    <span class="navbar-text"> Welcome
         <% out.print(uname); %>
-    </h5></span>
+    </span>
     </div>
 
     <div class="nav navbar-nav navbar-right">
-        <span class="navbar-text"> <a id="Logout" href="LogOut"><i class="fas fa-sign-out-alt">Logout</i></a></span>
+        <span class="navbar-text"> <a id="Logout" href="LogOut"><i class="fas fa-sign-out-alt"></i>Logout</a></span>
     </div>
 
-
 </nav>
+
+
+
 
 </body>
 </html>

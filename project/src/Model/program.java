@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 
@@ -67,11 +68,34 @@ public class program {
 	public void setExpected_output(String expected_output) {
 		this.expected_output = expected_output;
 	}
+	public void setLast_date(String date)
+	{
+		last_date = date;
+	}
 
 	public void setLast_date(int d,int m,int y) {
 		last_date="";
 		last_date+= y+"-"+d+"-"+m;
 		
+	}
+
+	public static int getProgramCountFromA_no(int a_no)
+	{
+		connect connect = new connect();
+		try {
+			PreparedStatement ps = connect.conn.prepareStatement("select count(p_id) from program where a_no = ?;");
+			ps.setInt(1,a_no);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			connect.close();
+			return rs.getInt(1);
+
+		}catch (Exception ex)
+		{
+			connect.close();
+		}
+		return 0;
+
 	}
 
 	public void setDate_of_creation(Date date_of_creation) {
@@ -103,7 +127,7 @@ public class program {
 			{
 				result = true;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

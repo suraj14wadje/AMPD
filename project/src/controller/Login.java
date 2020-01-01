@@ -28,7 +28,6 @@ public class Login extends HttpServlet {
 
         if(status)
         {
-            //setting cookie to expiry in 3 hrs
            session=request.getSession();
             session.setAttribute("email",uname);
             session.setAttribute("role",userType);
