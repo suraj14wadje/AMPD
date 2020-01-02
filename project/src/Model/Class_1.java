@@ -68,6 +68,32 @@ public class Class_1 {
 	}
 
 
+	public static Vector getAllClassNames()
+	{
+		Vector result = new Vector();
+		connect connect = new connect();
+		try{
+			PreparedStatement statement = connect.conn.prepareStatement("select class_name,c_id from class ;");
+
+			ResultSet rs = statement.executeQuery();
+			while (rs.next())
+			{
+				String class_name = rs.getString("class_name");
+				int c_id = rs.getInt("c_id");
+				Vector temp = new Vector();
+				temp.add(class_name);
+				temp.add(c_id);
+				result.add(temp);
+			}
+			connect.close();
+		}catch (Exception ex)
+		{
+			System.out.println(ex);
+		}
+		return result;
+	}
+
+
 	public static Vector getClassNamesFromT_id(int t_id)
 	{
 		Vector result = new Vector();

@@ -159,6 +159,25 @@ public class program {
 		}
 		return result;
 	}
+
+
+	public static String getQuestionFromP_id(int p_id)
+	{
+		String result="";
+		connect connection = new connect();
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select question from program where p_id = ? ;");
+			ps.setInt(1,p_id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			result = rs.getString("question");
+			connection.close();
+		} catch (SQLException e) {
+			connection.close();
+		}
+		return result;
+
+	}
 	
 	public static boolean delete(int p_id)
 	{

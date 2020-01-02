@@ -1,7 +1,9 @@
 package Model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class Batch {
 	
@@ -13,6 +15,32 @@ public class Batch {
 		this.batch_name = batch_name;
 		this.c_id = c_id;
 		this.t_id = t_id;
+	}
+
+	public static Vector getBatchNameFromC_id(int c_id)
+	{
+		Vector result = new Vector();
+		connect connect = new connect();
+		try{
+			PreparedStatement statement = connect.conn.prepareStatement("select batch_name,b_id from batch where  c_id=?;");
+			statement.setInt(1,c_id);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next())
+			{
+				String batch_name = rs.getString("batch_name");
+				int b_id = rs.getInt("b_id");
+				Vector temp = new Vector();
+				temp.add(batch_name);
+				temp.add(b_id);
+
+				result.add(temp);
+			}
+			connect.close();
+		}catch (Exception ex)
+		{
+			System.out.println(ex);
+		}
+		return result;
 	}
 	
 	public boolean createNew()

@@ -40,7 +40,7 @@ String uname="",email="";
     </div>
 
     <div class="nav navbar-nav navbar-right">
-    <span class="navbar-text"> <a id="Logout" href="LogOut"><i class="fas fa-sign-out-alt"></i>Logout</a></span>
+    <span class="navbar-text"> <a id="Logout" href="LogOut"><i class="fas fa-power-off"></i> Logout</a></span>
     </div>
 </nav>
 <br>

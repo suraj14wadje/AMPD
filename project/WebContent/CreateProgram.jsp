@@ -64,6 +64,7 @@
         p1.setLast_date(date);
         p1.setQuestion(question);
         p1.createNew();
+        response.sendRedirect("CreateAssignment.jsp");
 
     }
 
@@ -82,7 +83,7 @@
     </div>
 
     <div class="nav navbar-nav navbar-right">
-        <span class="navbar-text"> <a id="Logout" href="LogOut"><i class="fas fa-sign-out-alt"></i>Logout</a></span>
+        <span class="navbar-text"> <a id="Logout" href="LogOut"><i class="fas fa-power-off"></i> Logout</a></span>
     </div>
 </nav>
 
@@ -128,10 +129,6 @@
 </form>
 
 
-
-    <div id="output">
-
-    </div>
 
 </div>
 

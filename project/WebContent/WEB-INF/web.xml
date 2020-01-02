@@ -39,6 +39,17 @@
 		<url-pattern>/Rollno</url-pattern>
 	</servlet-mapping>
 
+
+
+	<servlet>
+		<servlet-name>GetBatches</servlet-name>
+		<servlet-class>controller.GetBatches</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetBatches</servlet-name>
+		<url-pattern>/GetBatches</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>TeacherHomeFilter</filter-name>
 		<filter-class>Filter.TeacherLogin</filter-class>

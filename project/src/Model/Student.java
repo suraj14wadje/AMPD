@@ -172,10 +172,46 @@ public class Student extends user_data {
 			PreparedStatement ps = connection.conn.prepareStatement("select first_name from student where email = ? ;");
 			ps.setString(1,email);
 			ResultSet rs = ps.executeQuery();
+			rs.next();
 			result = rs.getString("first_name");
 			connection.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
+	public static String getLastName(String email)
+	{
+		String result="";
+		connect connection = new connect();
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select last_name from student where email = ? ;");
+			ps.setString(1,email);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			result = rs.getString("last_name");
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	public static int getRollNo(String email)
+	{
+		int result=0;
+		connect connection = new connect();
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select roll_no from student where email = ? ;");
+			ps.setString(1,email);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			result = rs.getInt("roll_no");
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}

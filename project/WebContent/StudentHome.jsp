@@ -17,6 +17,7 @@
     String uname="",email="";
 
     if(session!=null){
+
         email=(String)session.getAttribute("email");
         uname = Student.getFirstName(email);
 
@@ -24,7 +25,7 @@
 
 %>
 <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.html"><i class="fas fa-terminal"></i> Code</a>
+    <a class="navbar-brand" href="#"><i class="fas fa-terminal"></i> Code</a>
 
     <div class="nav navbar-nav navbar-center">
     <span class="navbar-text"> Welcome
@@ -33,7 +34,7 @@
     </div>
 
     <div class="nav navbar-nav navbar-right">
-        <span class="navbar-text"> <a id="Logout" href="LogOut"><i class="fas fa-sign-out-alt"></i>Logout</a></span>
+        <span class="navbar-text"><a href="EditProfile.jsp"> <i class="fas fa-user-cog"></i> Edit Profile</a> &#160; &#160; &#160;&#160;&#160; <a id="Logout" href="LogOut"><i class="fas fa-power-off"></i> Logout</a></span>
     </div>
 
 </nav>

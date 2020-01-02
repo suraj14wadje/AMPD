@@ -80,6 +80,8 @@
         $(".close").click(function (e) {
           $('.alert').removeClass('alert-danger');
           $('.alert').removeClass('alert-success');
+          $('.form-control').removeClass('is-valid');
+          $('.form-control').removeClass('is-invalid');
            signupValidator.resetForm();
 
 
@@ -148,6 +150,16 @@
 
         $("#Login").submit(function (e) {
           e.preventDefault();
+          $.validator.setDefaults({
+            errorClass: 'invalid-feedback',
+            highlight: function(element){
+              $(element).removeClass('is-valid');
+              $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element){
+              $(element).removeClass('is-invalid');
+            }
+          })
           if(!$(this).valid())
           {
             return;
