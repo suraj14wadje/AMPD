@@ -46,16 +46,18 @@ public class Class_1 {
 		Vector result = new Vector();
 		connect connect = new connect();
 		try{
-			PreparedStatement statement = connect.conn.prepareStatement("select batch_name,class_name from class,batch where class.c_id = batch.c_id and t_id=?;");
+			PreparedStatement statement = connect.conn.prepareStatement("select batch_name,class_name,b_id from class,batch where class.c_id = batch.c_id and t_id=?;");
 			statement.setInt(1,t_id);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next())
 			{
 				String class_name = rs.getString("class_name");
 				String batch_name = rs.getString("batch_name");
+				int b_no = rs.getInt("b_id");
 				Vector temp = new Vector();
 				temp.add(class_name);
 				temp.add(batch_name);
+				temp.add(b_no+"");
 
 				result.add(temp);
 			}
@@ -82,7 +84,7 @@ public class Class_1 {
 				int c_id = rs.getInt("c_id");
 				Vector temp = new Vector();
 				temp.add(class_name);
-				temp.add(c_id);
+				temp.add(c_id+"");
 				result.add(temp);
 			}
 			connect.close();
@@ -108,7 +110,7 @@ public class Class_1 {
 				int c_id = rs.getInt("c_id");
 				Vector temp = new Vector();
 				temp.add(class_name);
-				temp.add(c_id);
+				temp.add(c_id+"");
 
 				result.add(temp);
 			}

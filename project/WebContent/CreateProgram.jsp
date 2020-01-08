@@ -57,14 +57,17 @@
     {
         String question = request.getParameter("question");
         String date = request.getParameter("date");
+        String title = request.getParameter("title");
 
         program p1 = new program();
         p1.setA_no(a_no);
         p1.setT_id(t_id);
         p1.setLast_date(date);
         p1.setQuestion(question);
+        p1.setTitle(title);
         p1.createNew();
-        response.sendRedirect("CreateAssignment.jsp");
+        int sub_id = Assignment.getSubject_IdFroma_no(a_no);
+        response.sendRedirect("CreateAssignment.jsp?sub_id="+sub_id);
 
     }
 
@@ -74,10 +77,10 @@
 %>
 
 <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="TeacherHome.jsp"><i class="fas fa-terminal"></i> Code</a>
+    <a class="navbar-brand" href="TeacherHome.jsp"><i class="fas fa-terminal"></i> Home</a>
 
     <div class="nav navbar-nav navbar-center">
-    <span class="navbar-text"> Welcome
+    <span class="navbar-text">&#160; &#160; &#160;&#160; &#160;&#160; Welcome
         <% out.print(uname); %>
     </span>
     </div>
@@ -90,14 +93,21 @@
 
 
 <div class="container">
-        <p>
+        <br>
+
+
         <div class="container text-center">
             <h1 class="display-7"><%out.print(Assingnment);%></h1>
             <p class="lead">Write Your Question here ! </p>
         </div>
-</p>
 
+    <form id="form" action="CreateProgram.jsp" method="post">
 
+        <br>
+
+   <div class="form-group input-group-lg">
+        <input type="text" name="title" class="form-control" placeholder="Enter Your Question Title Here">
+    </div>
 
 
     <div id="txtEditor">
@@ -107,11 +117,9 @@
 
 <br>
 
-<form id="form" action="CreateProgram.jsp" method="post">
-<div class="row">
 
 
-
+        <div class="row">
     <div class="form-group col-md-4">
         <label for="date">Last Submission Date :</label>
 

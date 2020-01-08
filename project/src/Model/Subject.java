@@ -68,6 +68,32 @@ public class Subject {
 		return result;
 	}
 
+	public static Vector getSubjectNamesFromB_id(int b_id)
+	{
+		Vector result = new Vector();
+		connect connect = new connect();
+		try
+		{
+			PreparedStatement ps= connect.conn.prepareStatement("select sub_name,sub_id from subject where c_id = (select c_id from batch where b_id = ?);");
+			ps.setInt(1,b_id);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next())
+			{
+				Vector temp = new Vector();
+				temp.add(rs.getString("sub_name"));
+				temp.add(rs.getString("sub_id"));
+				result.add(temp);
+			}
+
+		}catch (Exception ex)
+		{
+			System.out.println(ex);
+		}
+
+		return result;
+	}
+
 
 	public static Vector getSubjectNamesFromC_id(int c_id)
 	{
@@ -83,7 +109,7 @@ public class Subject {
 			{
 				Vector temp = new Vector();
 				temp.add(rs.getString("sub_name"));
-				temp.add(rs.getInt("sub_id"));
+				temp.add(rs.getString("sub_id"));
 				result.add(temp);
 			}
 

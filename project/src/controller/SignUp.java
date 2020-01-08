@@ -5,7 +5,6 @@ import Model.Student;
 import Model.user_data;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,6 +47,7 @@ public class SignUp extends HttpServlet {
                 int rollno = Integer.parseInt(request.getParameter("rollno"));
                 Student s1 = new Student(email,pass,fname,lname,rollno);
                 temp = s1.createNew();
+
                 System.out.println("new Student created!");
 
             }

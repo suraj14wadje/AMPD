@@ -1,7 +1,6 @@
 package Model;
 import gst.GreedyStringTiling;
 import gst.PlagResult;
-import org.json.simple.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -42,51 +41,42 @@ public class Plagiarism {
 	
 	public static String clean(String t)
 	{
+
 		t=t.replaceAll("\".*\"","[STRING_CONSTANT]");
-		
-		t=t.replaceAll("/\\*(.|\\n)*?\\*/","\n");
+//
+		t=t.replaceAll("(\\\"[^\\\"]*\\\"(?!\\\\))|(//[^\\n]*$|/(?!\\\\)\\*[\\s\\S]*?\\*(?!\\\\)/)","");
 		//removes multi line comments
-		
-		
-		t=t.replaceAll("//.*\n","");
-		//removes single line comments
-		
+//
+//
 		t=t.replaceAll(" [ \t]+","");
 		//removes spaces and tabs
-		
-		t=t.replaceAll("#.*\n","");
+
+//
+		t=t.replaceAll("#.*","");
 		//removes #include statement
-		
-		t=t.replaceAll("import.*\n","");
-		
-		t=t.replaceAll("\n+","\n");
-		
-		t=t.replaceAll("^\n","");
-		//removes blank lines
-		
+//
+		t=t.replaceAll("import.*","");
 		return t;
 	}
+
 	
 	
 	public static void main(String args[])
 	{
-//		Plagiarism p = new Plagiarism();
-//		String first = p.createStringFromFile("WebContent/WEB-INF/p1.c");
+		Plagiarism p = new Plagiarism();
+		String first = Submission.getProgramFromSub_id(4);
 //		String second = p.createStringFromFile("WebContent/WEB-INF/p2.c");
-//		first=Plagiarism.clean(first);
+
+		first=Plagiarism.clean(first);
+		System.out.println(first);
 //		second=Plagiarism.clean(second);
 //
 //		PlagResult rs = GreedyStringTiling.run(second,first,2,(float)0.85);
 //		System.out.println(rs.__str__());
-		JSONObject obj=new JSONObject();
-		obj.put("eStatus",true);
-		obj.put("signStatus",false);
 
-
-
-System.out.println(obj.toJSONString());
-		System.out.println(user_data.isEmailAvailable("suraj14wasfddje@gmail.com"));
 		
+
+
 	}
 
 }

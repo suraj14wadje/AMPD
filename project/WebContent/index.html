@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome To HomePage</title>
-    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="font/css/all.css" type="text/css" rel ="stylesheet">
     <link rel="stylesheet" href="css/mycss.css" type="text/css">
     <script src="js/lib/jquery.js"></script>
@@ -78,11 +78,12 @@
 
 
         $(".close").click(function (e) {
+          signupValidator.resetForm();
           $('.alert').removeClass('alert-danger');
           $('.alert').removeClass('alert-success');
           $('.form-control').removeClass('is-valid');
           $('.form-control').removeClass('is-invalid');
-           signupValidator.resetForm();
+
 
 
           $('.alert').html("");
@@ -214,7 +215,7 @@
   <div class="container">
     
     
-    <h1 class="text-center"><i class="fas fa-sign-in-alt"></i> Login </h1>
+    <h1 class="text-center text-light"><i class="fas fa-sign-in-alt"></i> Login/SignUp </h1>
     <br>
     
     <div class="row">
@@ -227,7 +228,7 @@
                 <a href="#Login_modal" data-toggle="modal" class="btn btn-success Teacher_button">Login</a>
                 <br><br>
                 <p class="text-center">
-                  Don't have an account?  <a class="Teacher_button" href="#Signup_modal" data-toggle="modal" > Request for an account</a>
+                  Don't have an account?  <a class="Teacher_button text-primary" href="#Signup_modal" data-toggle="modal" > Request for an account</a>
                 </p>
               </div>
             </div>
@@ -303,7 +304,7 @@
           <input type="hidden" class="user_type" name="user_type" value="">
 
             <div class="col-3 form-group">
-              <input type="submit" class="btn btn-primary btn-block btn-md" value="Sign in">
+              <input type="submit" class="btn btn-primary btn-block btn-md" value="Log in">
             </div>
 
           <div class="alert" role="alert">
@@ -359,7 +360,7 @@
               <input type="hidden" class="user_type" name="user_type" value="">
 
                 <div class="form-group col-3">
-                  <input type="submit" class="btn btn-primary btn-block btn-md" value="Sign in">
+                  <input type="submit" class="btn btn-primary btn-block btn-md" value="Sign Up">
 
               </div>
 
@@ -379,21 +380,6 @@
 
 
 
-  <script>
-     $(document).ready(function() {
-
-
-
-
-
-
-
-
-
-    });
-
-
-  </script>
 
     </body>
     </html>

@@ -1,49 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-	<script src="js/lib/jquery-3.1.1.js"></script>
-	<script src="js/dist/jquery.validate.js"></script>
-</head>
-<body>
-<script>
-	$().ready(function (){
+package controller;
 
-		jQuery.validator.setDefaults({
-			debug: true,
-			success: "valid"
-		});
-		$("#valid").validate({
-			rules : {
-				emailinput:{
-					email:true,
-					required:true,
-					remote: {
-					type: "POST",
-					url: 'UserValidation'//servlet
-					}
-				}
+import Model.Student;
+import Model.Submission;
 
-				},
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
-			success : function (lable) {
-				lable.addClass("valid").text("looks good!");
-				
-			}
-	})
+public class NewSubmission extends HttpServlet {
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	})
+HttpSession session = request.getSession(false);
+String email=[STRING_CONSTANT];
+response.getWriter().println([STRING_CONSTANT]);
+if(session!=null){
 
-</script>
+email=(String)session.getAttribute([STRING_CONSTANT]);
 
-	<h1>Welcome</h1>
+int rollno = Student.getRollNo(email);
+response.getWriter().println(session.getAttribute([STRING_CONSTANT]));
+if(rollno==(Integer)session.getAttribute([STRING_CONSTANT]))
+{
+int p_id = Integer.parseInt(request.getParameter([STRING_CONSTANT]));
+Submission s1 = new Submission();
+s1.setP_id(p_id);
+s1.setProgram(request.getParameter([STRING_CONSTANT]));
+s1.setRoll_no(rollno);
+if(s1.SubmitASubmission())
+{
+response.getWriter().print([STRING_CONSTANT]);
+}
 
-	<form id="valid" method="post">
-		<input type="email" name="emailinput">
-		<br><br>
-		<input type="submit">
-	</form>
-</body>
-</html>
+if(s1.ProcessSubmission())
+{
+response.getWriter().print([STRING_CONSTANT]);
+}
+
+
+}
+
+
+
+}
+else {
+}
+}
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+}
+}

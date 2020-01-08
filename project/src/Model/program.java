@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.Vector;
 
 public class program {
 	int a_no;
@@ -11,6 +12,7 @@ public class program {
 	String question;
 	String expected_output;
 	String last_date;
+	String title;
 	
 	Date date_of_creation;
 	
@@ -79,6 +81,11 @@ public class program {
 		
 	}
 
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+
 	public static int getProgramCountFromA_no(int a_no)
 	{
 		connect connect = new connect();
@@ -113,13 +120,14 @@ public class program {
 		{
 			
 			
-			PreparedStatement ps = connection.conn.prepareStatement("insert into program values(default,?,?,?,?,?,?);");
-			ps.setInt(1,a_no);
-			ps.setInt(2,t_id);
+			PreparedStatement ps = connection.conn.prepareStatement("insert into program(p_id,t_id,a_no,question,expected_output,last_date_of_submission,date_of_creation,title) values(default,?,?,?,?,?,?,?);");
+			ps.setInt(2,a_no);
+			ps.setInt(1,t_id);
 			ps.setString(3,question);
 			ps.setString(4,expected_output);
 			ps.setDate(5,Date.valueOf(last_date));
 			ps.setDate(6,date_of_creation);
+			ps.setString(7,title);
 			count = ps.executeUpdate();
 			ps.close();
 			connection.close();
@@ -177,6 +185,50 @@ public class program {
 		}
 		return result;
 
+	}
+
+	public static String getTitleFromP_id(int p_id)
+    {
+        String result="";
+        connect connection = new connect();
+        try {
+            PreparedStatement ps = connection.conn.prepareStatement("select title from program where p_id = ? ;");
+            ps.setInt(1,p_id);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            result = rs.getString("title");
+            connection.close();
+        } catch (SQLException e) {
+            connection.close();
+        }
+        return result;
+
+    }
+
+	public static Vector getProgramsFromA_no(int a_no)
+	{
+		Vector result = new Vector();
+
+		connect connect = new connect();
+		try {
+			PreparedStatement ps = connect.conn.prepareStatement("select p_id,title from program where a_no = ?");
+			ps.setInt(1,a_no);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Vector temp = new Vector();
+				temp.add(rs.getInt("p_id"));
+				temp.add(rs.getString("title"));
+				result.add(temp);
+			}
+			connect.close();
+
+		}catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+
+		return result;
 	}
 	
 	public static boolean delete(int p_id)

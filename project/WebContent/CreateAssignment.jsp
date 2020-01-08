@@ -17,7 +17,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="font/css/all.css" type="text/css" rel ="stylesheet">
     <script src="js/lib/jquery.js"></script>
     <script src="js/dist/jquery.validate.js"></script>
@@ -60,10 +60,10 @@
 %>
 
 <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="TeacherHome.jsp"><i class="fas fa-terminal"></i> Code</a>
+    <a class="navbar-brand" href="TeacherHome.jsp"><i class="fas fa-terminal"></i> Home</a>
 
     <div class="nav navbar-nav navbar-center">
-    <span class="navbar-text"> Welcome
+    <span class="navbar-text">&#160; &#160; &#160;&#160; &#160;&#160;&#160; &#160;&#160; Welcome
         <% out.print(uname); %>
     </span>
     </div>
@@ -73,12 +73,12 @@
     </div>
 </nav>
 <br>
-<div class="container">
+<div class="container h-100">
 
 
-    <div class="row h-100">
+    <div class="row">
 
-    <div class="col-lg-3 col-md-6 my-auto">
+    <div class="col-lg-3 col-md-6 ">
 
         <div class="card shadow p-3 mb-5 bg-white border-success rounded">
             <div class="card-body">
@@ -94,7 +94,7 @@
                 </div>
                 <button type="submit" class="btn btn-outline-success">Create New</button>
                 </form>
-                </p>
+             
             </div>
         </div>
     </div>
@@ -102,9 +102,10 @@
 
         <%
             if(Assignments!=null) {
+            	int count = 1;
 
                 for (int i = 0; i < Assignments.size(); i++) {
-                    int a_no = (Integer)(((Vector) (Assignments.get(i))).get(0));
+                    int a_no = Integer.parseInt(((Vector)Assignments.get(i)).get(0)+"");
                     out.print("<div class=\"col-lg-3 col-md-6 my-auto\">\n" +
                             "\n" +
                             "        <div class=\"card shadow p-3 mb-5 bg-white border-primary rounded\">\n" +
@@ -114,18 +115,28 @@
                     out.print(((Vector) (Assignments.get(i))).get(1));
                     out.print("</h5>");
                     String str = "Contains "+ program.getProgramCountFromA_no(a_no)+" Questions";
-                    out.print("<h6 class=\"card-subtitle mb-2 text-muted\">"+str+" </h6>");
+                    out.print("<h6 class=\"card-subtitle mb-2 text-info\">"+str+" </h6>");
                     out.print("<br>");
 
                     out.print("<div class=\"my-auto text-center text-muted\">");
                     String link = "CreateProgram.jsp?a_no="+a_no;
-                    out.print(String.format("<a href= \"%s\" >",link));
+                    
+
+                    out.print("<a class=\"btn btn-outline-primary\"href= \""+link+"\" >");
                     out.print("<i class=\"fas fa-plus\"></i>");
                     out.print("</a>");
                     out.print("</div>");
 
 
                     out.print("</div> </div> </div>");
+                    count++;
+                    
+                    if(count >=4)
+                    {
+                    	out.print("</div>");
+                    	out.print("<div class=\"row\">");
+                    	count = 0;
+                    }
 
 
                 }

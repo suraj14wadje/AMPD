@@ -1,8 +1,8 @@
 
 .home-page
 {
-  background: #4e54c8;  
-  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+  background: #313131;
+  background: -webkit-linear-gradient(to left, #1dd0e7, #f06d6d);
   width: 100%;
   height:100vh;
 }
@@ -13,7 +13,7 @@
 }
 
 .special-card{
-    background: rgba(52, 51, 51, 0.176);
+    background:  #cac4c4;
     pointer-events: all;
 }
 
@@ -33,7 +33,7 @@
     list-style: none;
     width: 20px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.36);
+    background: rgba(255, 255, 255, 0.582);
     animation: animate 25s linear infinite;
     bottom: -150px;
     

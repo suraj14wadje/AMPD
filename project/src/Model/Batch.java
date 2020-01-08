@@ -31,7 +31,7 @@ public class Batch {
 				int b_id = rs.getInt("b_id");
 				Vector temp = new Vector();
 				temp.add(batch_name);
-				temp.add(b_id);
+				temp.add(b_id+"");
 
 				result.add(temp);
 			}

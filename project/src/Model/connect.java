@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class connect {
-	final private String ADDRESS = "localhost:5432/temp";
+	final private String ADDRESS = "localhost/temp";
 	final private String USER ="postgres";
 	final private String PASS = "1234";
 	public Connection conn;

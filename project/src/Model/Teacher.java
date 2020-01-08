@@ -13,7 +13,7 @@ public class Teacher extends user_data {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	@Override
+	
 	public boolean createNew() {
 		// TODO Auto-generated method stub
 		

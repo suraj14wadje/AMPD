@@ -70,7 +70,7 @@ public class Student extends user_data {
 		this.year = cal.get(Calendar.YEAR);
 	}
 		
-	@Override
+
 	public boolean createNew() {
 		// TODO Auto-generated method stub
 		
@@ -104,21 +104,22 @@ public class Student extends user_data {
 		return result;
 	}
 	
-	public boolean update()
+	public static boolean update(String oldemail,String email,String firstName,String lastName,int rollno,int cid,int bid)
 	{
 		boolean result = false;
 		int count = 0;
 		connect connection = new connect();
+
+		result = updateEmail(oldemail,email);
 		
 		try {
-			PreparedStatement ps = connection.conn.prepareStatement("update student set roll_no=?,c_id=?,b_id=?,first_name=?,last_name=?,year=? where email = ? ");
+			PreparedStatement ps = connection.conn.prepareStatement("update student set roll_no=?,c_id=?,b_id=?,first_name=?,last_name=? where email = ? ");
 			ps.setInt(1,rollno);
 			ps.setInt(2,cid);
 			ps.setInt(3,bid);
 			ps.setString(4,firstName);
 			ps.setString(5,lastName);
-			ps.setInt(6,year);
-			ps.setString(7,super.getEmail());
+			ps.setString(6,email);
 			count = ps.executeUpdate();
 			ps.close();
 			connection.close();
@@ -198,10 +199,78 @@ public class Student extends user_data {
 		return result;
 	}
 
+	public static String getFullNameFromRollNo(int rollno)
+	{
+		String result="";
+		connect connection = new connect();
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("select first_name,last_name from student where roll_no = ? ;");
+			ps.setInt(1,rollno);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			result = rs.getString("first_name");
+			result+=" "+rs.getString("last_name");
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public static int getB_id(String email)
+	{
+		int result = -1;
+		connect connect = new connect();
+		try {
+			PreparedStatement ps = connect.conn.prepareStatement("select b_id from student where email = ?");
+			ps.setString(1,email);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			String temp =rs.getString("b_id");
+			if(temp == null)
+				return -1;
+			result = Integer.parseInt(temp);
+			connect.close();
+
+		}
+		catch (Exception ex)
+		{
+			System.out.println(ex);
+		}
+
+
+		return result;
+	}
+
+
+	public static int getC_id(String email)
+	{
+		int result = -1;
+		connect connect = new connect();
+		try {
+			PreparedStatement ps = connect.conn.prepareStatement("select c_id from student where email = ?");
+			ps.setString(1,email);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			String temp =rs.getString("c_id");
+			if(temp == null)
+				return -1;
+			result = Integer.parseInt(temp);
+			connect.close();
+
+		}
+		catch (Exception ex)
+		{
+			System.out.println(ex);
+		}
+
+
+		return result;
+	}
 
 	public static int getRollNo(String email)
 	{
-		int result=0;
+		int result=-1;
 		connect connection = new connect();
 		try {
 			PreparedStatement ps = connection.conn.prepareStatement("select roll_no from student where email = ? ;");

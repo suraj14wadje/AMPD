@@ -3,7 +3,6 @@ import java.security.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class user_data {
 	private String email;
@@ -77,6 +76,34 @@ public class user_data {
 		
 		return result;
 		
+	}
+
+	public static boolean updateEmail(String oldEmail,String email)
+	{
+		boolean result = false;
+		int count = 0;
+		connect connection = new connect();
+
+		try {
+			PreparedStatement ps = connection.conn.prepareStatement("update user_data set email = ?where email=?");
+			ps.setString(1,email);
+			ps.setString(2,oldEmail);
+			count = ps.executeUpdate();
+			if(count == 1)
+			{
+				result = true;
+			}
+			ps.close();
+			connection.conn.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return result;
+
 	}
 	
 	public boolean createNew()

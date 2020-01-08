@@ -44,15 +44,33 @@
 
     }
 
+    if(request.getMethod().equals("POST"))
+    {
+        String new_email = request.getParameter("email");
+        fname = request.getParameter("fname");
+        lname = request.getParameter("lname");
+        rollno = Integer.parseInt(request.getParameter("rollno"));
+        int c_id = Integer.parseInt(request.getParameter("class"));
+        int b_id = Integer.parseInt(request.getParameter("batch"));
+
+        if(Student.update(email,new_email,fname,lname,rollno,c_id,b_id))
+        {
+            session.setAttribute("email",new_email);
+            response.sendRedirect("StudentHome.jsp");
+        }
+
+
+    }
+
     Vector ClassNames = Class_1.getAllClassNames();
 
 %>
 <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="StudentHome.jsp"><i class="fas fa-terminal"></i> Code</a>
+    <a class="navbar-brand" href="StudentHome.jsp"><i class="fas fa-terminal"></i> Home</a>
 
     <div class="nav navbar-nav navbar-center">
-    <span class="navbar-text"> Welcome
-        <% out.print(fname); %>
+    <span class="navbar-text">&#160; &#160; &#160;&#160; &#160;&#160;&#160; &#160;&#160; Welcome
+        <% out.print(fname);%>
     </span>
     </div>
 
@@ -92,10 +110,13 @@
                             <input type="email" name="email" id="email" value="<%out.print(email);%>" class="form-control" placeholder="yourEmail@example.com" required>
                         </div>
 
-                    <div class="form-group">
-                        <select id="SelectClass" class="custom-select" required>
+                        <input hidden id="current_rollno" name="current_rollno" value="<%out.print(rollno);%>">
+                        <input hidden id="current_email" name="current_email" value="<%out.print(email);%>">
 
-                            <option value="">Select Your Class</option>
+                    <div class="form-group">
+
+                        <label for="SelectClass">Select Your class</label>
+                        <select id="SelectClass" name="class" class="custom-select" required>
                             <%
                                 for(int i=0;i<ClassNames.size();i++)
                                 {
@@ -108,7 +129,8 @@
                     </div>
 
                     <div class="form-group">
-                        <select id="SelectBatch" class="custom-select">
+                        <label for="SelectBatch">Select Your Batch</label>
+                        <select id="SelectBatch" name="batch" class="custom-select">
                             <script>
                                 $("#SelectClass").change(function(e){
 
@@ -162,13 +184,30 @@
                                                 },
                                                 rollno:{
                                                     required:true,
-                                                    //remote : "Rollno"
+                                                    remote : {
+                                                        url: "Rollno",
+                                                        data: {current_rollno : $("#current_rollno").val()}
+                                                    }
                                                 },
                                                 email: {
                                                     maxlength: 40,
                                                     email: true,
-                                                    //remote : "UserValidation"
-                                                }
+                                                    remote : {
+                                                        url: "UserValidation",
+                                                        data: {current_email : $("#current_email").val()}
+                                                    }
+                                                },
+                                                class:
+                                                    {
+                                                        required: true,
+
+                                                    },
+
+                                                batch:
+                                                    {
+                                                        required: true,
+
+                                                    }
                                             }
                                         })
 

@@ -10,8 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome To HomePage</title>
-    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="font/css/all.css" type="text/css" rel ="stylesheet">
     <script src="js/lib/jquery.js"></script>
     <script src="js/dist/jquery.validate.js"></script>
@@ -31,16 +30,16 @@ String uname="",email="";
 
 %>
 <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="TeacherHome.jsp"><i class="fas fa-terminal"></i> Code</a>
+    <a class="navbar-brand" href="TeacherHome.jsp"><i class="fas fa-terminal"></i> Home</a>
 
     <div class="nav navbar-nav navbar-center">
-    <span class="navbar-text"> Welcome
+    <span class="navbar-text">&#160; &#160; &#160;&#160; &#160;&#160;&#160; &#160;&#160; Welcome
         <% out.print(uname); %>
     </span>
     </div>
 
     <div class="nav navbar-nav navbar-right">
-    <span class="navbar-text"> <a id="Logout" href="LogOut"><i class="fas fa-power-off"></i> Logout</a></span>
+        <span class="navbar-text"><a href="#"> <i class="fas fa-user-cog"></i> Edit Profile</a> &#160; &#160; &#160;&#160;&#160; <a id="Logout" href="LogOut"><i class="fas fa-power-off"></i> Logout</a></span>
     </div>
 </nav>
 <br>
@@ -59,7 +58,7 @@ String uname="",email="";
         <div class="col-md-6 my-auto">
             <div class="card shadow p-3 mb-5 bg-white border-info rounded">
                 <div class="card-header">
-                    <h3 class="text-center"> <i class="fas fa-plus"></i>  Create An Assignment </h3>
+                    <h3 class="text-center"> <i class="fas fa-folder-plus"></i>  Create An Assignment </h3>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Choose Class</h5>
@@ -68,11 +67,10 @@ String uname="",email="";
                         <%
                             String className;
                             int c_id;
-
                             for(int i =0;i<Class_names.size();i++)
                             {
                                 className = ((Vector) Class_names.get(i)).get(0).toString();
-                                c_id = (Integer) (((Vector) Class_names.get(i)).get(1));
+                                c_id = (Integer.parseInt((((Vector) Class_names.get(i)).get(1)+"")));
                                 Vector subject = Subject.getSubjectNamesFromC_id(c_id);
                                 out.println(" <p> ");
                                 out.println("<div class=\"btn-group dropright\">");
@@ -85,7 +83,7 @@ String uname="",email="";
                                 for(int j =0;j<subject.size();j++)
                                 {
                                     String link = "CreateAssignment.jsp?sub_id="+((Vector)subject.get(j)).get(1).toString();
-                                    out.println(String.format("<a class=\"dropdown-item\" href=\"%s\">",link));
+                                    out.println("<a class=\"dropdown-item\" href=\""+link+"\">");
                                     out.println(((Vector)subject.get(j)).get(0).toString());
                                     out.println("</a>");
                                 }
@@ -122,12 +120,14 @@ String uname="",email="";
 
                             for(int i = 0;i<BatchAndClassNames.size();i++)
                             {
+                                int b_id = Integer.parseInt(((Vector)BatchAndClassNames.get(i)).get(2)+"");
+                                String link = "Submissions.jsp?b_id="+b_id;
                                 out.print("<p class=\"row\">");
 
-                                out.print("<button type=\"button\" class=\"btn btn-success\">");
+                                out.print("<a href=\""+link+"\" class=\"btn btn-success\">");
 
                                 out.print(((Vector) BatchAndClassNames.get(i)).get(0).toString() + "  : "+((Vector) BatchAndClassNames.get(i)).get(1).toString());
-                                out.print("</button>");
+                                out.print("</a>");
 
                                 out.print("</p>");
                             }

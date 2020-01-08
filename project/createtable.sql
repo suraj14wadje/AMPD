@@ -57,8 +57,9 @@ create table program
     p_id serial primary key,
     a_no int references Assignment on delete cascade on update cascade,
     t_id int references Teacher on delete set null on update cascade,
+    title varchar(100),
     question text,
-    expected_ouput text,
+    expected_output text,
     last_date_of_submission date,
     date_of_creation date
 );
@@ -73,6 +74,7 @@ create table submission
     program text,
     processed_program text,
     plagiarism_score float,
+    plagiarism_source int,
     comment text,
     marks int CHECK (marks in (1,2,3,4,5))
     

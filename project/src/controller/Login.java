@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
         {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            String res = String.format("{\"status\" : true }");
+            String res = ("{\"status\" : true }");
             out.println(res);
 
         }

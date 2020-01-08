@@ -161,7 +161,7 @@ public class GreedyStringTiling {
 
 			int dist;
 			if(distToNextTile(t, T) instanceof Integer)
-				dist = (int)distToNextTile(t, T);
+				dist = (Integer)distToNextTile(t, T);
 			else{
 				dist = 0;
 				dist = T.length - t;
@@ -175,7 +175,7 @@ public class GreedyStringTiling {
 					t = T.length;
 				else {
 					if(jumpToNextUnmarkedTokenAfterTile(t, T) instanceof Integer)
-						t = (int)jumpToNextUnmarkedTokenAfterTile(t, T);
+						t = (Integer)jumpToNextUnmarkedTokenAfterTile(t, T);
 					else
 						t = T.length;
 				}
@@ -212,7 +212,7 @@ public class GreedyStringTiling {
 			int dist;
 
 			if(distToNextTile(p, P) instanceof Integer){
-				dist = (int)distToNextTile(p, P);
+				dist = (Integer)distToNextTile(p, P);
 			}
 			else{
 				dist = 0;
@@ -226,7 +226,7 @@ public class GreedyStringTiling {
 				else {
 
 					if(jumpToNextUnmarkedTokenAfterTile(p, P) instanceof Integer)
-						p = (int)jumpToNextUnmarkedTokenAfterTile(p, P);
+						p = (Integer)jumpToNextUnmarkedTokenAfterTile(p, P);
 					else{
 						p = 0;
 						p = P.length;
@@ -403,7 +403,7 @@ public class GreedyStringTiling {
 	private static Object jumpToNextUnmarkedTokenAfterTile(int pos, String[] stringList) {
 		Object dist = distToNextTile(pos, stringList);
 		if(dist instanceof Integer)
-			pos = pos+ (int)dist;
+			pos = pos+ (Integer)dist;
 		else
 			return null;
 		while (pos+1<stringList.length && (isMarked(stringList[pos+1])))

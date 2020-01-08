@@ -45,7 +45,15 @@
 		<servlet-name>GetBatches</servlet-name>
 		<servlet-class>controller.GetBatches</servlet-class>
 	</servlet>
+    <servlet>
+        <servlet-name>NewSubmission</servlet-name>
+        <servlet-class>controller.NewSubmission</servlet-class>
+    </servlet>
 	<servlet-mapping>
+		<servlet-name>NewSubmission</servlet-name>
+		<url-pattern>/NewSubmission</url-pattern>
+	</servlet-mapping>
+    <servlet-mapping>
 		<servlet-name>GetBatches</servlet-name>
 		<url-pattern>/GetBatches</url-pattern>
 	</servlet-mapping>
@@ -57,6 +65,26 @@
 	<filter-mapping>
 		<filter-name>TeacherHomeFilter</filter-name>
 		<url-pattern>/TeacherHome.jsp</url-pattern>
+	</filter-mapping>
+
+
+	<filter>
+		<filter-name>TeacherCreateAssignmentFilter</filter-name>
+		<filter-class>Filter.TeacherLogin</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>TeacherCreateAssignmentFilter</filter-name>
+		<url-pattern>/CreateAssignment.jsp</url-pattern>
+	</filter-mapping>
+
+
+	<filter>
+		<filter-name>TeacherCreateProgramFilter</filter-name>
+		<filter-class>Filter.TeacherLogin</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>TeacherCreateProgramFilter</filter-name>
+		<url-pattern>/CreateProgram.jsp</url-pattern>
 	</filter-mapping>
 
 

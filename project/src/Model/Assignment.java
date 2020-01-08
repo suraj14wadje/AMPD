@@ -33,7 +33,6 @@ public class Assignment {
 			ps.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -41,6 +40,46 @@ public class Assignment {
 		return result;
 	}
 
+	public static int getAssignmentCountFromSub_id(int s_id)
+	{
+		connect connect = new connect();
+		try {
+			PreparedStatement ps = connect.conn.prepareStatement("select count(a_no) from Assignment where sub_id = ?;");
+			ps.setInt(1,s_id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			connect.close();
+			return rs.getInt(1);
+
+		}catch (Exception ex)
+		{
+			connect.close();
+		}
+		return 0;
+
+	}
+
+	public static int getSubject_IdFroma_no(int a_no)
+	{
+		connect connect = new connect();
+		try {
+			PreparedStatement ps = connect.conn.prepareStatement("select sub_id from Assignment where a_no = ?;");
+			ps.setInt(1,a_no);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+
+			int result = rs.getInt(1);
+			connect.close();
+			return result;
+
+		}catch (Exception ex)
+		{
+			System.out.println(ex);
+			connect.close();
+		}
+		return 0;
+
+	}
 
 
 	public static String getAssNameFromA_no(int a_no)
@@ -91,7 +130,7 @@ public class Assignment {
 			}else {
 				do{
 					Vector temp = new Vector();
-					temp.add(rs.getInt("a_no"));
+					temp.add(rs.getString("a_no"));
 					temp.add(rs.getString("a_name"));
 					result.add(temp);
 
