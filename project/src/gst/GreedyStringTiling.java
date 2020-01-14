@@ -57,6 +57,8 @@ public class GreedyStringTiling {
 		result.setSimilarity(similarity);
 		result.setSuspectedPlagiarism(simResult.suspPlag);
 
+		GreedyStringTiling.matchList.clear();
+		GreedyStringTiling.tiles.clear();
 
 //		System.out.println("Identifiers: "+result.getIdentifier().id1+":"+result.getIdentifier().id2);
 //		System.out.println("Similarity: "+result.getSimilarity());
@@ -117,11 +119,11 @@ public class GreedyStringTiling {
 			else {
 				markStrings(s, PList, TList);
 				if (s > (2 * minimalMatchingLength))
-					s = s/2;
+					s = s / 2;
 				else if (s > minimalMatchingLength)
-					s = minimalMatchingLength;
+				    s = minimalMatchingLength;
 				else
-					stop = true;
+				    stop = true;
 			}
 		}
 		return tiles;

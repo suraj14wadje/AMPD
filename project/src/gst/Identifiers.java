@@ -4,7 +4,7 @@ package gst;
  * Class to store the identifiers for the 
  * Greedy String Tiling algorithm
  * 
- * @author Suraj Wadje
+ * @author arunjayapal
  *
  */
 public class Identifiers {

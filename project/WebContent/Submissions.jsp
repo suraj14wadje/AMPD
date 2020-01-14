@@ -19,8 +19,9 @@
     <script src="js/dist/jquery.validate.js"></script>
     <script src="js/lib/popper.min.js"></script>
     <script src="js/lib/bootstrap.js"></script>
-    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet">
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="DataTables/datatables.min.css" type="text/css" rel="stylesheet">
+    <script src="DataTables/datatables.min.js
+"></script>
 
 </head>
 <body>
@@ -110,7 +111,7 @@
             {
                 Vector Assignments = Assignment.getAssNameAndNoFromSubId(sub_id);
                 if(Assignments!=null) {
-                    out.print("<br><h4 class=\"\"> choose Assignment </h4><br>");
+                    out.print("<br><h4 class=\"\"> Choose Assignment </h4><br>");
                     out.print("<div class=\"row\">");
                     int count = 0;
                     for (int i = 0; i < Assignments.size(); i++) {
@@ -147,7 +148,7 @@
             {
                 Vector Questions = program.getProgramsFromA_no(a_no);
                 if(Questions!=null) {
-                    out.print("<br><h4 class=\"\"> choose Question </h4><br>");
+                    out.print("<br><h4 class=\"\"> Choose Question </h4><br>");
                     out.print("<div class=\"row\">");
                     int count = 0;
                     for (int i = 0; i < Questions.size(); i++) {
@@ -190,6 +191,9 @@
                         "      <th scope=\"col\">Name Of Student</th>\n" +
                         "      <th scope=\"col\">Plagiarism Score</th>\n" +
                         "      <th scope=\"col\">Date Of Submission</th>\n" +
+                        "      <th scope=\"col\">Maching With</th>\n" +
+                        "      <th scope=\"col\">View/Compare Code</th>\n" +
+                        "      <th scope=\"col\">Marks</th>\n" +
                         "    </tr>\n" +
                         "  </thead>\n "+
                         "<tbody>\n");
@@ -200,12 +204,12 @@
                 {
                     for(int i=0;i<submitted.size();i++)
                     {
-                        if(Float.parseFloat(((Vector)submitted.get(i)).get(3)+"")>90.0)
+                        if(Float.parseFloat(((Vector)submitted.get(i)).get(3)+"")>70.0)
                         {
                             out.print("<tr class=\"table-danger\">\n");
 
                         }
-                        else if(Float.parseFloat(((Vector)submitted.get(i)).get(3)+"")<50.0){
+                        else if(Float.parseFloat(((Vector)submitted.get(i)).get(3)+"")<40.0){
                             out.print("<tr class=\"table-success\">\n");
                         }
                         else{
@@ -214,9 +218,36 @@
                                 out.print(" <th scope=\"row\">"+((Vector)submitted.get(i)).get(0)+"</th>\n" +
                                 "      <td>"+((Vector)submitted.get(i)).get(1)+"</td>\n" +
                                 "      <td>"+((Vector)submitted.get(i)).get(3)+" % </td>\n" +
-                                "      <td>"+((Vector)submitted.get(i)).get(2)+"</td>\n" +
-                                "    </tr>\n");
+                                "      <td>"+((Vector)submitted.get(i)).get(2)+"</td>\n");
 
+                        if(Integer.parseInt(((Vector)submitted.get(i)).get(4)+"")==-1){
+                            out.print("<td></td>");
+                        }
+                        else {
+                            out.print("<td>"+((Vector)submitted.get(i)).get(4)+"</td>\n" );
+
+                        }
+                        String link="ViewSubmission.jsp?sub_id=";
+                        link+=((Vector)submitted.get(i)).get(5);
+                        String link2 ="Compare.jsq?id1=";
+
+                                if(Float.parseFloat(((Vector)submitted.get(i)).get(3)+"")<40.0){
+                                    out.print("<td><a href=\""+link+"\" > View </a></td>");
+                                }
+                                else {
+                                    out.print("  <td> <a href=\""+link+"\" > View </a>  &#160;&#160; <a href=\""+link2+"\" > Compare</a></td>\n" );
+
+                                }
+
+
+                        if(Integer.parseInt(((Vector)submitted.get(i)).get(6)+"")==0){
+                            out.print("<td>Not Checked</td>");
+                        }
+                        else {
+                            out.print("<td>"+((Vector)submitted.get(i)).get(6)+"</td>\n" );
+
+                        }
+                        out.print("</tr>\n");
                     }
 
                 }

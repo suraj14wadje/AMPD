@@ -1,8 +1,5 @@
-<%@ page import="Model.Student" %>
 <%@ page import="java.util.Vector" %>
-<%@ page import="Model.Subject" %>
-<%@ page import="Model.Assignment" %>
-<%@ page import="Model.program" %>
+<%@ page import="Model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -27,6 +24,7 @@
 
 
     }
+
 
 %>
 <nav class="navbar navbar-dark bg-dark">

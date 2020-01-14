@@ -157,24 +157,72 @@ public class Submission {
 
 		return result;
 	}
+
+	public static boolean updateRemark(int marks,String comment,int sub_id)
+	{
+		boolean result = false;
+		connect connect = new connect();
+		try {
+			PreparedStatement ps = connect.conn.prepareStatement("update submission set marks=?,comment=? where sub_id = ?;");
+			ps.setInt(1,marks);
+			ps.setString(2,comment);
+			ps.setInt(3,sub_id);
+			int count = ps.executeUpdate();
+			if(count == 1)
+				result = true;
+			connect.close();
+		}catch (Exception ex)
+		{
+			connect.close();
+			ex.printStackTrace();
+		}
+		return result;
+	}
+
+
+	public static int getRollNoFromSub_id(int sub_id)
+	{
+		int result=0;
+		connect connect = new connect();
+		try {
+			PreparedStatement ps = connect.conn.prepareStatement("select roll_no from submission where sub_id = ?");
+			ps.setInt(1,sub_id);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+			{
+				result = rs.getInt("roll_no");
+			}
+			connect.close();
+
+		}catch (Exception ex)
+		{
+			ex.printStackTrace();
+			connect.close();
+		}
+
+		return result;
+	}
 	public boolean SubmitASubmission()
 	{
 		boolean result=false;
 		int count = 0;
-		this.processed = Plagiarism.clean(program);
+        this.processed = Plagiarism.clean(program);
 		int sub_id = getSubmissionId(p_id,roll_no);
 		System.out.println("sub Id : "+sub_id);
+
 		connect connection = new connect();
 		try {
 			PreparedStatement ps;
 
 			if(sub_id != -1)
 			{
-				ps = connection.conn.prepareStatement("update submission set sub_date= ?,program =?,processed_program=?,plagiarism_score=0,plagiarism_source=-1 where sub_id= ?;");
+				ps = connection.conn.prepareStatement("update submission set sub_date= ?,program =?,processed_program=?,plagiarism_score=?,plagiarism_source=? where sub_id= ?;");
 				ps.setDate(1,sub_date);
 				ps.setString(2,program);
 				ps.setString(3,processed);
-				ps.setInt(4,sub_id);
+				ps.setFloat(4,plagiarism_score);
+				ps.setFloat(5,plag_source_roll_no);
+				ps.setInt(6,sub_id);
 			}
 			else {
 				ps = connection.conn.prepareStatement("insert into submission(sub_id,roll_no,p_id,sub_date,program,processed_program) values(default,?,?,?,?,?);");
@@ -201,44 +249,37 @@ public class Submission {
 
 	public boolean ProcessSubmission()
 	{
+
 		Vector result = getSubmissions();
 
 		if(result == null)
 			return true;
 		float temp;
+
+		System.out.println("for :"+roll_no);
 		for(int i = 0;i<result.size();i++)
 		{
 			String program2 = ((Vector)result.get(i)).get(1)+"";
 			PlagResult plagResult=null;
-			System.out.println("processing : "+((Vector)result.get(i)).get(0));
-			System.out.print(processed);
+			System.out.print("processing : "+((Vector)result.get(i)).get(0));
 			System.out.print(" : ");
-			System.out.println(program2);
-			if(processed.equals(program2))
-			{
-				plagiarism_score = 100;
-				plag_source_roll_no = Integer.parseInt(((Vector)result.get(i)).get(0)+"");
-				break;
 
-			}
-			else {
-				plagResult = GreedyStringTiling.run(processed,program2 ,2,(float)0.80);
+				plagResult = GreedyStringTiling.run(processed,program2 ,2,(float)0.60);
 				temp = plagResult.similarity*100;
+				System.out.println(plagResult.similarity);
 				if(temp > plagiarism_score)
 				{
 					plagiarism_score = temp;
 					plag_source_roll_no = Integer.parseInt(((Vector)result.get(i)).get(0)+"");
 				}
-				if(plagResult.suspectedPlagiarism){
-					break;
-				}
 
-			}
 
 			System.out.println("Done");
 
 
 		}
+		if(plagiarism_score < 40)
+			plag_source_roll_no = -1;
 		return UpdatePlagiarism();
 	}
 
@@ -265,12 +306,14 @@ public class Submission {
 		return result;
 	}
 
+
+
 	public static Vector getSubmissionDetails(int p_id)
 	{
 		Vector result = new Vector();
 		connect connect = new connect();
 		try {
-			PreparedStatement ps = connect.conn.prepareStatement("select roll_no,sub_date,plagiarism_score from submission where p_id = ? ;");
+			PreparedStatement ps = connect.conn.prepareStatement("select roll_no,sub_date,plagiarism_score,plagiarism_source,sub_id,marks from submission where p_id = ? ;");
 			ps.setInt(1,p_id);
 
 			ResultSet rs = ps.executeQuery();
@@ -281,7 +324,11 @@ public class Submission {
 				String name = Student.getFullNameFromRollNo(rs.getInt("roll_no"));
 				temp.add(name);
 				temp.add(rs.getDate("sub_date")+"");
-				temp.add(rs.getFloat("plagiarism_score"));
+				temp.add(rs.getFloat("plagiarism_score")+"");
+				temp.add(rs.getInt("plagiarism_source"));
+				temp.add(rs.getInt("sub_id")+"");
+				temp.add(rs.getInt("marks")+"");
+
 				result.add(temp);
 			}
 

@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Class for the result of the comparison of two texts for plagiarism.
  * Getter and setter methods here
  *  
- * @author Suraj Wadje
+ * @author arunjayapal
  */
 
 public class PlagResult {

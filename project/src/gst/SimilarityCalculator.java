@@ -7,7 +7,7 @@ import java.util.List;
  * Class to compute similarity between the source file 
  * and the plagiarized file
  * 
- * @author Suraj Wadje
+ * @author arunjayapal
  */
 public class SimilarityCalculator {
 	

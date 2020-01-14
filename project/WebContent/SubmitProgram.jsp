@@ -20,11 +20,9 @@
     <script src="js/lib/jquery.js"></script>
     <script src="js/dist/jquery.validate.js"></script>
     <script src="js/lib/bootstrap.js"></script>
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/vs.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
 </head>
 <body>
     <%
@@ -69,6 +67,7 @@
 
 <body>
 
+
 <div class="container">
     <br>
     <h3 class="text-center"><%out.print(program.getTitleFromP_id(p_id));%></h3>
@@ -79,7 +78,7 @@
     <br><br>
     <div class="form-group shadow-textarea">
         <label class="text-center" for="textArea"><h6>Submit Your Solution Below</h6></label>
-        <textarea class="form-control" name="answer" id="textArea" form="submit" rows="15"><%out.print(Program);%></textarea>
+        <textarea class="form-control" name="answer" id="textArea" form="submit" rows="15"><%=Program%></textarea>
     </div>
 
 

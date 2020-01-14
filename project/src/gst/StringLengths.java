@@ -2,7 +2,7 @@ package gst;
 
 /**
  * The length of the strings are stored
- * @author Suraj wadje
+ * @author arunjayapal
  *
  */
 public class StringLengths {

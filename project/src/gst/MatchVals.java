@@ -3,7 +3,7 @@ package gst;
 /**
  * Class to store the Matched tile values
  * 
- * @author Suraj Wadje
+ * @author arunjayapal
  *
  */
 public class MatchVals {

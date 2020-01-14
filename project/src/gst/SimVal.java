@@ -3,7 +3,7 @@ package gst;
 /**
  * Class to store the similarity parameters
  * 
- * @author Suraj Wadje
+ * @author arunjayapal
  *
  */
 public class SimVal {

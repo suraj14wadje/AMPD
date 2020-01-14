@@ -25,19 +25,21 @@ public class NewSubmission extends HttpServlet {
                 int p_id = Integer.parseInt(request.getParameter("p_id"));
                 Submission s1 = new Submission();
                 s1.setP_id(p_id);
-                s1.setProgram(request.getParameter("answer"));
+                String temp = request.getParameter("answer");
+                temp = temp.trim();
+                s1.setProgram(temp);
                 s1.setRoll_no(rollno);
                 System.out.println("about to submit");
                 if(s1.SubmitASubmission())
                 {
                     System.out.println("submitted succeffuly");
-//                    response.getWriter().print("Submitted Successfully Now Processing");
+                    response.getWriter().print("Submitted Successfully Now Processing");
                 }
 
                 if(s1.ProcessSubmission())
                 {
                     System.out.println("Proccessed Successfully");
-//                    response.getWriter().print("<br> Done Processing");
+                    response.getWriter().print("<br> Done Processing");
                 }
                 response.sendRedirect("SubmitProgram.jsp?p_id="+p_id);
 

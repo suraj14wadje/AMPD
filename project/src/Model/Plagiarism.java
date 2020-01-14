@@ -45,14 +45,13 @@ public class Plagiarism {
 		t=t.replaceAll("\".*\"","[STRING_CONSTANT]");
 //
 		t=t.replaceAll("(\\\"[^\\\"]*\\\"(?!\\\\))|(//[^\\n]*$|/(?!\\\\)\\*[\\s\\S]*?\\*(?!\\\\)/)","");
-		//removes multi line comments
-//
-//
+
+
 		t=t.replaceAll(" [ \t]+","");
 		//removes spaces and tabs
 
 //
-		t=t.replaceAll("#.*","");
+		t=t.replaceAll("#include.*","");
 		//removes #include statement
 //
 		t=t.replaceAll("import.*","");
@@ -64,15 +63,40 @@ public class Plagiarism {
 	public static void main(String args[])
 	{
 		Plagiarism p = new Plagiarism();
-		String first = Submission.getProgramFromSub_id(4);
-//		String second = p.createStringFromFile("WebContent/WEB-INF/p2.c");
+		String first,second;
+		int i = 32,j=33;
+		PlagResult pr;
 
-		first=Plagiarism.clean(first);
-		System.out.println(first);
-//		second=Plagiarism.clean(second);
+		first = Submission.getProgramFromSub_id(i);
+		second = Submission.getProgramFromSub_id(j);
+//		System.out.print("matching "+i+" and "+j);
+//		pr = GreedyStringTiling.run(first,second,2,(float) 0.80);
 //
-//		PlagResult rs = GreedyStringTiling.run(second,first,2,(float)0.85);
-//		System.out.println(rs.__str__());
+//		System.out.println(" match : "+pr.similarity*100);
+
+
+
+		for(i =42;i<45;i++)
+		{
+			for(j = 42;j<45;j++)
+			{
+				if(i!=j)
+				{
+					first = Submission.getProgramFromSub_id(i);
+					second = Submission.getProgramFromSub_id(j);
+					System.out.print("matching "+i+" and "+j);
+
+					pr = GreedyStringTiling.run(first,second,2,(float) 0.60);
+
+
+					System.out.println(" match : "+pr.similarity*100);
+					System.out.println("similarity "+i +": "+pr.id1+" "+j+": "+pr.id2);
+
+
+
+				}
+			}
+		}
 
 		
 

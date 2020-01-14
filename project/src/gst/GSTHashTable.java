@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * HASH table for Greedy String tiling algorithm
  * 
- * @author Suraj Wadje
+ * @author arunjayapal
  *
  */
 public class GSTHashTable {
